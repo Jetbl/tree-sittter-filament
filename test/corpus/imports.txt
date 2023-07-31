@@ -1,0 +1,14 @@
+==================
+Import
+==================
+
+import "foo";
+import "c/bar.fil";
+
+---
+
+(source_file
+  (import
+    (string_lit))
+  (import
+    (string_lit)))
