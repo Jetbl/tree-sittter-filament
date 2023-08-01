@@ -1,83 +1,152 @@
+
 module.exports = grammar({
   name: 'filament',
 
   extras: $ => [/\s/, $.comment],
 
   rules: {
-    // source_file: $ => seq(repeat($.import), repeat($.comp_or_external)),
 
-    source_file: $ => seq(repeat($.import), repeat($.externals)),
+   file: $ => seq($.imports, repeat($.comp_or_ext)),
 
-    import: $ => seq('import', $.string_lit, ';'),
+   bitwidth: $ => repeat1($.ASCII_DIGIT),
 
-    // comp_or_external: $ => choice('comp', $.external),
+   string_lit: $ => seq("\"", repeat($.char), "\""),
 
-    externals: $ => seq('extern', $.string_lit, '{', repeat1($.external), '}'),
+   import: $ => seq("import", $.string_lit, ";"),
 
-    external: $ => seq('comp', $.signature, ';'),
+   imports: $ => repeat($.import),
 
-    signature: $ => seq($.identifier, optional($.params), optional($.abstract_var), $.io, optional($.constraints)),
-    // signature: $ => seq($.identifier, optional($.params), optional($.abstract_var), $.io),
+   identifier: $ => seq(repeat1(choice("_", $.ASCII_ALPHA)), repeat(choice("_", $.ASCII_ALPHA, $.ASCII_DIGIT))),
 
-    constraints: $ => seq('where', $.constraint, repeat(seq(',', $.constraint))),
+   gt: $ => ">",
 
-    constraint: $ => choice(prec.left(4, seq($.expr , $._order_op, $.expr)), prec.left(4, seq($.time, $._order_op, $.time ))),
+   gte: $ => ">=",
 
-    _order_op : $ => choice('>', '>=', '<', '<=', '=='),
+   lt: $ => "<",
 
-    io: $ => seq('(', optional($.ports), ')', '->', '(', optional($.ports), ')'),
+   lte: $ => "<=",
 
-    ports: $ => seq($.port_def, repeat(seq(',', $.port_def)), optional(',')),
+   eq: $ => "==",
 
-    port_def: $ => choice(seq(optional(choice($.interval_range, $.interface)), $.identifier, ':', $.expr)),
+   order_op: $ => choice($.gte, $.gt, $.lte, $.lt, $.eq),
 
-    interval_range: $ => seq('@', '[', $.time,',', $.time, ']'),
+   constraint: $ => choice(seq($.expr, $.order_op, $.expr), seq($.time, $.order_op, $.time)),
 
-    interface: $ => seq('@interface', '[', $.identifier, ']'),
+   constraints: $ => optional(seq("where", $.constraint, repeat(seq(",", $.constraint)))),
 
-    time: $ => choice(seq($.identifier, '+', $.expr), seq ($.expr, '+', $.identifier), $.identifier, $.expr ),
+   params: $ => optional(seq("[", $.param_bind, repeat(seq(",", $.param_bind)), "]")),
 
+   param_bind: $ => choice(seq("?", $.param_var, "=", $.expr), $.param_var),
 
-    abstract_var: $ => seq('<', $.event_bind, repeat(seq(',', $.event_bind)), '>'),
+   signature: $ => seq($.identifier, $.params, optional($.abstract_var), $.io, $.constraints),
 
-    event_bind: $ => choice(seq('?', $.event_with_delay, '=', $.time), $.event_with_delay),
+   component: $ => seq("comp", $.signature, "{", repeat($.command), "}"),
 
-    event_with_delay: $ => seq( $.identifier, ':', $.delay),
+   external: $ => seq("extern", $.string_lit, "{", repeat(seq("comp", $.signature, ";")), "}"),
 
-    delay: $ => choice( $.expr, seq($.time, '-', '(', $.time ,')')),
+   comp_or_ext: $ => choice($.component, $.external),
 
-    expr: $ => choice($.expr_base, $.binary_expr),
+   pound: $ => "#",
 
-    binary_expr: $ => choice(prec.left(10, seq($.expr_base, choice('*', '/', '%'), $.expr_base)) ,prec.left(9, seq($.expr_base, choice('+', '-'), $.expr_base))),
-    // expr: $ => seq($.expr_base, repeat(seq($._operator, $.expr_base))),
-    // _operator: $ => choice('*', '/', '%', '+', '-'),
-    // _operator: $ => '+',
+   param_var: $ => seq($.pound, $.identifier),
 
-    expr_base: $ => choice( seq('(', $.expr ,')'), $.bitwidth, $.param_var /* TODO other expr_base */),
+   interface: $ => seq("@interface", "[", $.identifier, "]"),
 
-    params: $ => seq('[', $.param_bind, repeat(seq(',', $.param_bind)), ']'),
+   op_mul: $ => "*",
 
-    param_bind: $ => choice(seq('?', $.param_var, '=', $.expr), $.param_var),
+   op_div: $ => "/",
 
-    param_var: $ => seq('#', $.identifier),
-        
-    identifier: $ => {
-        const alpha_numeric = /[_a-zA-Z0-9]/
-        const alpha = /[a-zA-Z]/
-        return token(seq(alpha, repeat(alpha_numeric)))
-    },
+   op_mod: $ => "%",
 
-    bitwidth: $ => /[0-9]+/,
+   op_add: $ => "+",
 
-    string_lit: $ => seq('"', repeat($._char) , '"'),
+   op_sub: $ => "-",
 
+   operator: $ => choice($.op_mul, $.op_div, $.op_add, $.op_sub, $.op_mod),
 
-    _ascii_digit: $ => /[0-9]/,
+   pow2: $ => "pow2",
 
-    _char: $ => /[^"]/,
+   log2: $ => "log2",
 
-    
-    comment: $ => token(choice(
+   unknown_fn: $ => $.identifier,
+
+   un_fn: $ => choice($.pow2, $.log2, $.unknown_fn),
+
+   expr_base: $ => choice(seq($.un_fn, "(", $.expr, ")"), seq("(", $.expr, ")"), $.bitwidth, $.param_var),
+
+   expr: $ => seq($.expr_base, repeat(seq($.operator, $.expr_base))),
+
+   delay: $ => choice($.expr, seq($.time, "-", "(", $.time, ")")),
+
+   event_with_delay: $ => seq($.identifier, ":", $.delay),
+
+   event_bind: $ => choice(seq("?", $.event_with_delay, "=", $.time), $.event_with_delay),
+
+   abstract_var: $ => seq("<", $.event_bind, repeat(seq(",", $.event_bind)), ">"),
+
+   time: $ => choice(seq($.identifier, "+", $.expr), seq($.expr, "+", $.identifier), $.identifier, $.expr),
+
+   interval_range: $ => seq("@", "[", $.time, ",", $.time, "]"),
+
+   port_def: $ => choice(seq(optional(choice($.interval_range, $.interface)), $.identifier, ":", $.expr), seq($.identifier, "[", $.expr, "]", ":", $.bundle_typ)),
+
+   arrow: $ => "->",
+
+   io: $ => seq("(", optional($.ports), ")", $.arrow, "(", optional($.ports), ")"),
+
+   ports: $ => seq($.port_def, repeat(seq(",", $.port_def)), optional(",")),
+
+   conc_params: $ => optional(seq("[", $.expr, repeat(seq(",", $.expr)), "]")),
+
+   instance: $ => seq($.identifier, ":=", "new", $.identifier, $.conc_params, optional($.invoke_args), ";"),
+
+   guard: $ => seq($.port, optional(seq("|", $.guard))),
+
+   connect: $ => seq($.port, "=", optional(seq($.guard, "?")), $.port, ";"),
+
+   dots: $ => "..",
+
+   access: $ => seq("{", choice(seq($.expr, $.dots, $.expr), $.expr), "}"),
+
+   port: $ => choice(seq($.identifier, ".", $.identifier, optional($.access)), seq($.identifier, optional($.access)), $.bitwidth),
+
+   arguments: $ => choice(seq("(", ")"), seq("(", $.port, repeat(seq(",", $.port)), ")")),
+
+   time_args: $ => seq("<", $.time, repeat(seq(",", $.time)), ">"),
+
+   invoke_args: $ => seq($.time_args, $.arguments),
+
+   invocation: $ => seq($.identifier, ":=", $.identifier, $.invoke_args, ";"),
+
+   expr_cmp: $ => seq($.expr, $.order_op, $.expr),
+
+   if_stmt: $ => seq("if", $.expr_cmp, "{", $.commands, "}", optional(seq("else", "{", $.commands, "}"))),
+
+   for_loop: $ => seq("for", $.param_var, "in", $.expr, "..", $.expr, "{", $.commands, "}"),
+
+   bundle_typ: $ => seq("for", "<", $.param_var, ">", $.interval_range, $.expr),
+
+   bundle: $ => seq("bundle", $.identifier, "[", $.expr, "]", ":", $.bundle_typ, ";"),
+
+   implication: $ => seq(optional(seq($.expr_cmp, "=>")), $.expr_cmp),
+
+   assume_w: $ => "assume",
+
+   assert_w: $ => "assert",
+
+   fact: $ => seq(choice($.assume_w, $.assert_w), $.implication, ";"),
+
+   command: $ => choice($.bundle, $.instance, $.invocation, $.connect, $.for_loop, $.if_stmt, $.fact),
+
+   commands: $ => repeat($.command),
+
+   ASCII_ALPHA: $ => /[a-zA-Z]/,
+
+   ASCII_DIGIT: $ => /[0-9]/,
+
+   char: $ => /[^"]/,
+
+   comment: $ => token(choice(
         seq('//', /.*/),
         seq(
           '/*',
@@ -86,5 +155,7 @@ module.exports = grammar({
         ),
     )),
 
+
   }
 });
+
