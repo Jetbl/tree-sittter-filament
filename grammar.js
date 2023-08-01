@@ -6,75 +6,67 @@ module.exports = grammar({
 
   rules: {
 
-   file: $ => seq($.imports, repeat($.comp_or_ext)),
+   file: $ => seq(repeat($.import), repeat($._comp_or_ext)),
 
-   bitwidth: $ => repeat1($.ASCII_DIGIT),
+   bitwidth: $ => repeat1($._ASCII_DIGIT),
 
-   string_lit: $ => seq("\"", repeat($.char), "\""),
+   string_lit: $ => seq("\"", repeat($._char), "\""),
 
    import: $ => seq("import", $.string_lit, ";"),
 
-   imports: $ => repeat($.import),
+   identifier: $ => {
+        const alpha_numeric = /[_a-zA-Z0-9]/
+        const alpha = /[a-zA-Z]/
+        return token(seq(alpha, repeat(alpha_numeric)))
+   },
 
-   identifier: $ => seq(repeat1(choice("_", $.ASCII_ALPHA)), repeat(choice("_", $.ASCII_ALPHA, $.ASCII_DIGIT))),
+   _gt: $ => ">",
 
-   gt: $ => ">",
+   _gte: $ => ">=",
 
-   gte: $ => ">=",
+   _lt: $ => "<",
 
-   lt: $ => "<",
+   _lte: $ => "<=",
 
-   lte: $ => "<=",
+   _eq: $ => "==",
 
-   eq: $ => "==",
+   _order_op: $ => choice($._gte, $._gt, $._lte, $._lt, $._eq),
 
-   order_op: $ => choice($.gte, $.gt, $.lte, $.lt, $.eq),
+   constraint: $ => choice(prec.left(4, seq($.expr , $._order_op, $.expr)), prec.left(4, seq($.time, $._order_op, $.time ))),
+       
+   constraints: $ => seq("where", $.constraint, repeat(seq(",", $.constraint))),
 
-   constraint: $ => choice(seq($.expr, $.order_op, $.expr), seq($.time, $.order_op, $.time)),
-
-   constraints: $ => optional(seq("where", $.constraint, repeat(seq(",", $.constraint)))),
-
-   params: $ => optional(seq("[", $.param_bind, repeat(seq(",", $.param_bind)), "]")),
+   params: $ => seq("[", $.param_bind, repeat(seq(",", $.param_bind)), "]"),
 
    param_bind: $ => choice(seq("?", $.param_var, "=", $.expr), $.param_var),
 
-   signature: $ => seq($.identifier, $.params, optional($.abstract_var), $.io, $.constraints),
+   signature: $ => seq($.identifier, optional($.params), optional($.abstract_var), $.io, optional($.constraints)),
 
    component: $ => seq("comp", $.signature, "{", repeat($.command), "}"),
 
    external: $ => seq("extern", $.string_lit, "{", repeat(seq("comp", $.signature, ";")), "}"),
 
-   comp_or_ext: $ => choice($.component, $.external),
+   _comp_or_ext: $ => choice($.component, $.external),
 
-   pound: $ => "#",
+   _pound: $ => "#",
 
-   param_var: $ => seq($.pound, $.identifier),
+   param_var: $ => seq($._pound, $.identifier),
 
    interface: $ => seq("@interface", "[", $.identifier, "]"),
 
-   op_mul: $ => "*",
+   _pow2: $ => "pow2",
 
-   op_div: $ => "/",
-
-   op_mod: $ => "%",
-
-   op_add: $ => "+",
-
-   op_sub: $ => "-",
-
-   operator: $ => choice($.op_mul, $.op_div, $.op_add, $.op_sub, $.op_mod),
-
-   pow2: $ => "pow2",
-
-   log2: $ => "log2",
+   _log2: $ => "log2",
 
    unknown_fn: $ => $.identifier,
 
-   un_fn: $ => choice($.pow2, $.log2, $.unknown_fn),
+   un_fn: $ => choice($._pow2, $._log2, $.unknown_fn),
 
-   expr_base: $ => choice(seq($.un_fn, "(", $.expr, ")"), seq("(", $.expr, ")"), $.bitwidth, $.param_var),
+   binary_expr: $ => choice(prec.left(10, seq($.expr, choice('*', '/', '%'), $.expr)) ,prec.left(9, seq($.expr, choice('+', '-'), $.expr))),
+  
+   unary_expr: $ => seq($.un_fn, "(", $.expr, ")"),
 
-   expr: $ => seq($.expr_base, repeat(seq($.operator, $.expr_base))),
+   expr: $ => choice($.unary_expr, $.binary_expr, seq("(", $.expr, ")"), $.bitwidth, $.param_var),
 
    delay: $ => choice($.expr, seq($.time, "-", "(", $.time, ")")),
 
@@ -90,23 +82,23 @@ module.exports = grammar({
 
    port_def: $ => choice(seq(optional(choice($.interval_range, $.interface)), $.identifier, ":", $.expr), seq($.identifier, "[", $.expr, "]", ":", $.bundle_typ)),
 
-   arrow: $ => "->",
+   _arrow: $ => "->",
 
-   io: $ => seq("(", optional($.ports), ")", $.arrow, "(", optional($.ports), ")"),
+   io: $ => seq("(", optional($.ports), ")", $._arrow, "(", optional($.ports), ")"),
 
    ports: $ => seq($.port_def, repeat(seq(",", $.port_def)), optional(",")),
 
-   conc_params: $ => optional(seq("[", $.expr, repeat(seq(",", $.expr)), "]")),
+   conc_params: $ => seq("[", $.expr, repeat(seq(",", $.expr)), "]"),
 
-   instance: $ => seq($.identifier, ":=", "new", $.identifier, $.conc_params, optional($.invoke_args), ";"),
+   instance: $ => seq($.identifier, ":=", "new", $.identifier, optional($.conc_params), optional($.invoke_args), ";"),
 
    guard: $ => seq($.port, optional(seq("|", $.guard))),
 
    connect: $ => seq($.port, "=", optional(seq($.guard, "?")), $.port, ";"),
 
-   dots: $ => "..",
+   _dots: $ => "..",
 
-   access: $ => seq("{", choice(seq($.expr, $.dots, $.expr), $.expr), "}"),
+   access: $ => seq("{", choice(seq($.expr, $._dots, $.expr), $.expr), "}"),
 
    port: $ => choice(seq($.identifier, ".", $.identifier, optional($.access)), seq($.identifier, optional($.access)), $.bitwidth),
 
@@ -118,11 +110,11 @@ module.exports = grammar({
 
    invocation: $ => seq($.identifier, ":=", $.identifier, $.invoke_args, ";"),
 
-   expr_cmp: $ => seq($.expr, $.order_op, $.expr),
+   expr_cmp: $ => prec.left(4, seq($.expr, $._order_op, $.expr)),
 
-   if_stmt: $ => seq("if", $.expr_cmp, "{", $.commands, "}", optional(seq("else", "{", $.commands, "}"))),
+   if_stmt: $ => seq("if", $.expr_cmp, "{", repeat($.command), "}", optional(seq("else", "{", repeat($.command), "}"))),
 
-   for_loop: $ => seq("for", $.param_var, "in", $.expr, "..", $.expr, "{", $.commands, "}"),
+   for_loop: $ => seq("for", $.param_var, "in", $.expr, "..", $.expr, "{", repeat($.command), "}"),
 
    bundle_typ: $ => seq("for", "<", $.param_var, ">", $.interval_range, $.expr),
 
@@ -138,13 +130,11 @@ module.exports = grammar({
 
    command: $ => choice($.bundle, $.instance, $.invocation, $.connect, $.for_loop, $.if_stmt, $.fact),
 
-   commands: $ => repeat($.command),
+   _ASCII_ALPHA: $ => /[a-zA-Z]/,
 
-   ASCII_ALPHA: $ => /[a-zA-Z]/,
+   _ASCII_DIGIT: $ => /[0-9]/,
 
-   ASCII_DIGIT: $ => /[0-9]/,
-
-   char: $ => /[^"]/,
+   _char: $ => /[^"]/,
 
    comment: $ => token(choice(
         seq('//', /.*/),
@@ -154,8 +144,6 @@ module.exports = grammar({
           '/'
         ),
     )),
-
-
   }
 });
 
