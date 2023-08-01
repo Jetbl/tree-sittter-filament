@@ -186,11 +186,11 @@ extern "comb.sv" {
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (externals
-    (string_lit)
-    (comment)
+(file
+  (comp_or_ext
     (external
+      (string_lit)
+      (comment)
       (signature
         (identifier)
         (params
@@ -214,13 +214,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -231,37 +229,32 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
                 (param_var
                   (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier)))))
         (abstract_var
           (event_bind
             (event_with_delay
@@ -276,13 +269,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -293,9 +284,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -304,9 +294,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -316,54 +305,45 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
                 (param_var
                   (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (param_var
+                (identifier))))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier)))))
         (abstract_var
           (event_bind
             (event_with_delay
@@ -378,13 +358,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -395,9 +373,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -406,9 +383,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -418,54 +394,45 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
                 (param_var
                   (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (param_var
+                (identifier))))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier)))))
         (abstract_var
           (event_bind
             (event_with_delay
@@ -480,13 +447,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -497,9 +462,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -508,9 +472,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -520,9 +483,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -531,30 +493,23 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
+              (param_var
+                (identifier))))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -575,13 +530,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -592,9 +545,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -603,9 +555,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -615,9 +566,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -626,13 +576,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -653,13 +600,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -670,9 +615,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -681,9 +625,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -693,9 +636,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -704,13 +646,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -731,13 +670,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -748,9 +685,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -759,9 +695,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -771,9 +706,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -782,13 +716,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -809,13 +740,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -826,9 +755,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -838,9 +766,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -849,13 +776,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -876,13 +800,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -893,9 +815,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -904,9 +825,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -916,8 +836,7 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -926,13 +845,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -953,13 +869,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -970,9 +884,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -981,9 +894,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -993,8 +905,7 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -1003,13 +914,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -1030,13 +938,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1047,9 +953,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -1058,9 +963,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1070,8 +974,7 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -1080,13 +983,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -1107,13 +1007,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1124,9 +1022,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -1135,9 +1032,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1147,8 +1043,7 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -1157,13 +1052,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -1184,13 +1076,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1201,9 +1091,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -1212,9 +1101,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1224,8 +1112,7 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -1234,13 +1121,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -1261,13 +1145,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1278,9 +1160,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -1289,9 +1170,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1301,8 +1181,7 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -1311,13 +1190,10 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -1341,13 +1217,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1358,9 +1232,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1370,9 +1243,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -1381,30 +1253,23 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))))))
-    (external
+              (param_var
+                (identifier))))))
       (signature
         (identifier)
         (params
@@ -1428,13 +1293,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1445,9 +1308,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1457,9 +1319,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -1468,30 +1329,23 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))))))
-    (external
+              (param_var
+                (identifier))))))
       (signature
         (identifier)
         (params
@@ -1518,13 +1372,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -1535,9 +1387,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
+                (param_var
+                  (identifier))))
             (port_def
               (interval_range
                 (time
@@ -1546,9 +1397,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -1558,9 +1408,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -1569,34 +1418,28 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
               (binary_expr
-                (expr_base
+                (expr
                   (param_var
                     (identifier)))
-                (expr_base
+                (expr
                   (param_var
-                    (identifier)))))))))
-    (external
+                    (identifier))))))))
       (signature
         (identifier)
         (params
@@ -1620,659 +1463,12 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier)))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier)))))
-          (param_bind
-            (param_var
-              (identifier))
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth))))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
-        (constraints
-          (constraint
-            (time
-              (identifier))
-            (time
-              (identifier)))
-          (constraint
-            (expr
-              (expr_base
-                (param_var
-                  (identifier))))
-            (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
-      (signature
-        (identifier)
-        (params
-          (param_bind
-            (param_var
-              (identifier))))
-        (abstract_var
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (time
-                  (identifier))
-                (time
-                  (identifier)))))
-          (event_bind
-            (event_with_delay
-              (identifier)
-              (delay
-                (expr
-                  (expr_base
-                    (bitwidth)))))
-            (time
-              (identifier)
-              (expr
-                (expr_base
-                  (bitwidth))))))
-        (io
-          (ports
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
                   (bitwidth))))
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
+            (time
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))
-            (port_def
-              (interval_range
-                (time
-                  (identifier))
-                (time
-                  (identifier)))
-              (identifier)
-              (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (bitwidth)))))
+        (io
           (ports
             (port_def
               (interval_range
@@ -2282,9 +1478,18 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (bitwidth)))))
         (constraints
           (constraint
             (time
@@ -2293,13 +1498,568 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (param_var
+                (identifier))))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (param_var
+                (identifier))))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (param_var
+                (identifier))))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (param_var
+                (identifier))))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier))))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier)))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
                 (param_var
                   (identifier))))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
             (expr
-              (expr_base
-                (bitwidth)))))))
-    (external
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier)))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier))))
+          (param_bind
+            (param_var
+              (identifier))
+            (expr
+              (param_var
+                (identifier)))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (time
+                  (identifier))
+                (time
+                  (identifier)))))
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))
+            (time
+              (identifier)
+              (expr
+                (bitwidth)))))
+        (io
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (bitwidth)))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))))
+        (constraints
+          (constraint
+            (time
+              (identifier))
+            (time
+              (identifier)))
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
       (signature
         (identifier)
         (params
@@ -2323,13 +2083,11 @@ extern "comb.sv" {
               (identifier)
               (delay
                 (expr
-                  (expr_base
-                    (bitwidth)))))
+                  (bitwidth))))
             (time
               (identifier)
               (expr
-                (expr_base
-                  (bitwidth))))))
+                (bitwidth)))))
         (io
           (ports
             (port_def
@@ -2340,9 +2098,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier))))))
+                (param_var
+                  (identifier)))))
           (ports
             (port_def
               (interval_range
@@ -2352,9 +2109,8 @@ extern "comb.sv" {
                   (identifier)))
               (identifier)
               (expr
-                (expr_base
-                  (param_var
-                    (identifier)))))))
+                (param_var
+                  (identifier))))))
         (constraints
           (constraint
             (time
@@ -2363,17 +2119,13 @@ extern "comb.sv" {
               (identifier)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth))))
+              (bitwidth)))
           (constraint
             (expr
-              (expr_base
-                (param_var
-                  (identifier))))
+              (param_var
+                (identifier)))
             (expr
-              (expr_base
-                (bitwidth)))))))))
+              (bitwidth))))))))

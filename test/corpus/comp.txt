@@ -1,0 +1,155 @@
+================================================================================
+Component
+================================================================================
+
+comp Mult[#W]<G: 2>(
+  @interface[G] go_G: 1,
+  @[G, G+1] left: #W,
+  @[G, G+1] right: #W,
+) -> (
+  @[G+2, G+3] out: #W
+) where #W > 0 {
+  ll := new Register[#W]<G, G+3>(left);
+  lr := new Register[#W]<G, G+3>(right);
+  m := new MultComb[#W]<G+2>(ll.out, lr.out);
+  out = m.out;
+}
+
+--------------------------------------------------------------------------------
+
+(file
+  (comp_or_ext
+    (component
+      (signature
+        (identifier)
+        (params
+          (param_bind
+            (param_var
+              (identifier))))
+        (abstract_var
+          (event_bind
+            (event_with_delay
+              (identifier)
+              (delay
+                (expr
+                  (bitwidth))))))
+        (io
+          (ports
+            (port_def
+              (interface
+                (identifier))
+              (identifier)
+              (expr
+                (bitwidth)))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)
+                  (expr
+                    (bitwidth))))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))
+            (port_def
+              (interval_range
+                (time
+                  (identifier))
+                (time
+                  (identifier)
+                  (expr
+                    (bitwidth))))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier)))))
+          (ports
+            (port_def
+              (interval_range
+                (time
+                  (identifier)
+                  (expr
+                    (bitwidth)))
+                (time
+                  (identifier)
+                  (expr
+                    (bitwidth))))
+              (identifier)
+              (expr
+                (param_var
+                  (identifier))))))
+        (constraints
+          (constraint
+            (expr
+              (param_var
+                (identifier)))
+            (expr
+              (bitwidth)))))
+      (command
+        (instance
+          (identifier)
+          (identifier)
+          (conc_params
+            (expr
+              (param_var
+                (identifier))))
+          (invoke_args
+            (time_args
+              (time
+                (identifier))
+              (time
+                (identifier)
+                (expr
+                  (bitwidth))))
+            (arguments
+              (port
+                (identifier))))))
+      (command
+        (instance
+          (identifier)
+          (identifier)
+          (conc_params
+            (expr
+              (param_var
+                (identifier))))
+          (invoke_args
+            (time_args
+              (time
+                (identifier))
+              (time
+                (identifier)
+                (expr
+                  (bitwidth))))
+            (arguments
+              (port
+                (identifier))))))
+      (command
+        (instance
+          (identifier)
+          (identifier)
+          (conc_params
+            (expr
+              (param_var
+                (identifier))))
+          (invoke_args
+            (time_args
+              (time
+                (identifier)
+                (expr
+                  (bitwidth))))
+            (arguments
+              (port
+                (identifier)
+                (identifier))
+              (port
+                (identifier)
+                (identifier))))))
+      (command
+        (connect
+          (port
+            (identifier))
+          (port
+            (identifier)
+            (identifier)))))))
