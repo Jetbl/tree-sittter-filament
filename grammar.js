@@ -8,10 +8,6 @@ module.exports = grammar({
 
    file: $ => seq(repeat($.import), repeat($._comp_or_ext)),
 
-   bitwidth: $ => repeat1($._ASCII_DIGIT),
-
-   string_lit: $ => seq("\"", repeat($._char), "\""),
-
    import: $ => seq("import", $.string_lit, ";"),
 
    identifier: $ => {
@@ -20,19 +16,9 @@ module.exports = grammar({
         return token(seq(alpha, repeat(alpha_numeric)))
    },
 
-   _gt: $ => ">",
+   order_op: $ => token(choice(">", ">=", "<", "<=", "==")),
 
-   _gte: $ => ">=",
-
-   _lt: $ => "<",
-
-   _lte: $ => "<=",
-
-   _eq: $ => "==",
-
-   _order_op: $ => choice($._gte, $._gt, $._lte, $._lt, $._eq),
-
-   constraint: $ => choice(prec.left(4, seq($.expr , $._order_op, $.expr)), prec.left(4, seq($.time, $._order_op, $.time ))),
+   constraint: $ => choice(prec.left(4, seq($.expr , $.order_op, $.expr)), prec.left(4, seq($.time, $.order_op, $.time ))),
        
    constraints: $ => seq("where", $.constraint, repeat(seq(",", $.constraint))),
 
@@ -48,19 +34,11 @@ module.exports = grammar({
 
    _comp_or_ext: $ => choice($.component, $.external),
 
-   _pound: $ => "#",
-
-   param_var: $ => seq($._pound, $.identifier),
+   param_var: $ => seq("#", $.identifier),
 
    interface: $ => seq("@interface", "[", $.identifier, "]"),
 
-   _pow2: $ => "pow2",
-
-   _log2: $ => "log2",
-
-   unknown_fn: $ => $.identifier,
-
-   un_fn: $ => choice($._pow2, $._log2, $.unknown_fn),
+   un_fn: $ => choice("pow2", "log2", $.identifier),
 
    binary_expr: $ => choice(prec.left(10, seq($.expr, choice('*', '/', '%'), $.expr)) ,prec.left(9, seq($.expr, choice('+', '-'), $.expr))),
   
@@ -82,9 +60,7 @@ module.exports = grammar({
 
    port_def: $ => choice(seq(optional(choice($.interval_range, $.interface)), $.identifier, ":", $.expr), seq($.identifier, "[", $.expr, "]", ":", $.bundle_typ)),
 
-   _arrow: $ => "->",
-
-   io: $ => seq("(", optional($.ports), ")", $._arrow, "(", optional($.ports), ")"),
+   io: $ => seq("(", optional($.ports), ")", "->", "(", optional($.ports), ")"),
 
    ports: $ => seq($.port_def, repeat(seq(",", $.port_def)), optional(",")),
 
@@ -96,9 +72,7 @@ module.exports = grammar({
 
    connect: $ => seq($.port, "=", optional(seq($.guard, "?")), $.port, ";"),
 
-   _dots: $ => "..",
-
-   access: $ => seq("{", choice(seq($.expr, $._dots, $.expr), $.expr), "}"),
+   access: $ => seq("{", choice(seq($.expr, "..", $.expr), $.expr), "}"),
 
    port: $ => choice(seq($.identifier, ".", $.identifier, optional($.access)), seq($.identifier, optional($.access)), $.bitwidth),
 
@@ -110,7 +84,7 @@ module.exports = grammar({
 
    invocation: $ => seq($.identifier, ":=", $.identifier, $.invoke_args, ";"),
 
-   expr_cmp: $ => prec.left(4, seq($.expr, $._order_op, $.expr)),
+   expr_cmp: $ => prec.left(4, seq($.expr, $.order_op, $.expr)),
 
    if_stmt: $ => seq("if", $.expr_cmp, "{", repeat($.command), "}", optional(seq("else", "{", repeat($.command), "}"))),
 
@@ -122,19 +96,13 @@ module.exports = grammar({
 
    implication: $ => seq(optional(seq($.expr_cmp, "=>")), $.expr_cmp),
 
-   assume_w: $ => "assume",
-
-   assert_w: $ => "assert",
-
-   fact: $ => seq(choice($.assume_w, $.assert_w), $.implication, ";"),
+   fact: $ => seq(choice("assume", "assert"), $.implication, ";"),
 
    command: $ => choice($.bundle, $.instance, $.invocation, $.connect, $.for_loop, $.if_stmt, $.fact),
 
-   _ASCII_ALPHA: $ => /[a-zA-Z]/,
+   bitwidth: $ => repeat1(/[0-9]/),
 
-   _ASCII_DIGIT: $ => /[0-9]/,
-
-   _char: $ => /[^"]/,
+   string_lit: $ => seq("\"", repeat(/[^"]/), "\""),
 
    comment: $ => token(choice(
         seq('//', /.*/),
